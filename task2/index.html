@@ -34,7 +34,6 @@
 		top: 0;
 		left: 0;
 		display: none;
-		padding: 0 0 0 20px;
 		width: 200px;
 		background: #fff;
 		border: 1px solid #d2d2d2;
@@ -42,8 +41,12 @@
 		list-style: none;
 	}
 	.menu li {
+		padding: 0 0 0 20px;
 		font-size: 16px;
 		line-height: 2em;
+	}
+	.menu li:hover {
+		background: #f5f5f5;
 	}
   </style>
 <body>
@@ -74,9 +77,20 @@
      				menu.style.top = event.pageY + 'px';
      			}
 
-     			console.log('%c Your default contextmenu is already disabled','font-size: 20px;font-weight: 700;color: red;')
+     			//console.log('%c Your default contextmenu is already disabled','font-size: 20px;font-weight: 700;color: red;')
      			// event.stopPropagation();event.preventDefault();
      			return false;
+     		}
+     		menu.onclick = function(event){
+     			//console.log(event.target);
+     			var target = event.target;
+     			if(target.nodeName.toLowerCase() == 'li'){
+     				alert(target.innerHTML);
+     				event.stopPropagation();
+     			}
+     		}
+     		document.onclick = function(){
+     			menu.style.display = 'none';
      		}
      	}
     	
