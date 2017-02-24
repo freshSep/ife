@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="Generator" content="shadow">
+  <meta name="Author" content="Sep">
+  <meta charset="UTF-8">
+  <!-- 默认以ie最新版本显示-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="Keywords" content="ife 2017 task 2">
+  <meta name="Description" content="自定义网页右键菜单">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFE 2017 task 2 自定义网页右键菜单</title>
+  <style>
+  	* {
+  		margin: 0;
+  		padding: 0;
+  		box-sizing: border-box;
+  	}
+  	body {
+  		position: relative;
+  		padding: 15vh 0 0 5vw;
+  	}
+	.tips {
+		height: 3em;
+		line-height: 3em;
+		text-indent: 1em;
+		font-size: 22px;
+		background: #f5f5f5;
+		border: 1px solid #e8e8e8;
+		border-radius: 5px;
+	}
+	.menu {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+		padding: 0 0 0 20px;
+		width: 200px;
+		background: #fff;
+		border: 1px solid #d2d2d2;
+		border-radius: 3px;
+		list-style: none;
+	}
+	.menu li {
+		font-size: 16px;
+		line-height: 2em;
+	}
+  </style>
+<body>
+    <p class="tips">right click to see the menu</p>
+    <ul class="menu" id="menu">
+	<li>Menu Item 1</li>
+	<li>Menu Item 2</li>
+    </ul>
+    <script>
+     	window.onload = function(){
+     		var menu = document.getElementById('menu');
+     		var winW = window.innerWidth;
+     		var winH = window.innerHeight;
+     		document.oncontextmenu = function(event){
+     			menu.style.display = 'block';
+     			var menuW = menu.offsetWidth;
+     			var menuH = menu.offsetHeight;
+
+     			//console.log('x: ' + event.pageX +', y :'+event.pageY );
+     			if(event.pageX + menuW > winW ){
+     				menu.style.left = event.pageX - menuW +'px';
+     			}else{
+     				menu.style.left = event.pageX + 'px';
+     			}
+     			if(event.pageY + menuH > winH ){
+     				menu.style.top = event.pageY - menuH +'px';
+     			}else{
+     				menu.style.top = event.pageY + 'px';
+     			}
+
+     			console.log('%c Your default contextmenu is already disabled','font-size: 20px;font-weight: 700;color: red;')
+     			// event.stopPropagation();event.preventDefault();
+     			return false;
+     		}
+     	}
+    	
+    </script>
+</body>
+</html>
