@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="Generator" content="shadow">
+  <meta name="Author" content="Sep">
+  <meta charset="UTF-8">
+  <!-- 默认以ie最新版本显示-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自定义Checkbox</title>
+  <style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body {
+		padding-top: 15vh;
+	}
+	form {
+		margin: 0 auto;
+		max-width: 200px;
+	}
+	fieldset {
+		margin-bottom: 15px;
+		padding: 15px;
+	}
+	fieldset input{
+		margin-right: 8px;
+	}
+	input[type="checkbox"] {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		border: 0;
+		-webkit-appearance :none;
+		-moz-appearance: none;
+		-o-appearance: none;
+		appearance: none;
+		outline: 0;
+	}
+	#group1 input{
+		background: url(http://p1.bqimg.com/567571/99322cf8c3283e42.png) -23px -10px no-repeat;
+	}
+	#group1 .circle input:checked {
+		background-position: -58px -10px;
+	}
+	#group1 .square input {
+		background-position: -23px -32px;
+	}
+	#group1 .square input:checked {
+		background-position: -58px -32px;
+	}
+	#group2 input[type="checkbox"] {
+		position: relative;
+		border: 1px solid #dadada;
+		width: 14px;
+		height: 14px;
+	}
+	#group2 .circle input {
+		width: 16px;
+		height: 16px;
+		border-radius: 16px;
+	}
+	#group2 input:checked {
+		border-color: #d83c30;
+	}
+	#group2 .circle input:checked:before {
+		content: "";
+		position: absolute;
+		top: 4px;
+		left: 4px;
+		display: block;
+		width: 6px;
+		height: 6px;
+		border-radius: 6px;
+		background: #d83c30;
+	}
+	#group2 .square input:checked:before {
+		content: "√";
+		position: absolute;
+		top: -2px;
+		left: 0;
+		font-family: cursive;
+		font-weight: 800;
+		display: block;
+		width: 6px;
+		height: 6px;
+		border-radius: 6px;
+		color: #d83c30;
+		transform: rotateX(45deg) rotateZ(18deg);
+	}
+  </style>
+  <body>
+  	<form action="/">
+  		<fieldset id="group1">
+  			<label class="circle"><input type="checkbox"></label>
+  			<label class="square"><input type="checkbox"></label>
+  		</fieldset>
+  		<fieldset id="group2">
+  			<label class="circle"><input type="checkbox"></label>
+  			<label class="square"><input type="checkbox"></label>
+  		</fieldset>
+  	</form>
+  	
+  </body>
+</html>
