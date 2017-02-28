@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <!-- 启用360浏览器的极速模式(webkit) -->
+  <meta name="renderer" content="webkit">
+  <!-- 默认以ie最新版本显示-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="Generator" content="shadow">
+  <meta name="Author" content="Sep">
+  <title>ife task 5 之正则表达式</title>
+  <style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body {
+		padding-top: 15vh;
+	}
+	.wrap {
+		margin: 0 auto;
+		max-width: 500px;
+	}
+	fieldset {
+		margin-bottom: 15px;
+		padding: 15px;
+	}
+	fieldset input{
+		display: inline-block;
+		margin: 0 8px;
+		padding: 5px 8px;
+	}
+	a {
+		display: inline-block;
+		padding: 5px 12px;
+		background: #04aac1;
+		color: #fff;
+		text-decoration: none;
+	}
+	a:active {
+		background: #50c4ed;
+	}
+	a:hover, a:focus {
+		background: #307790;
+	}
+	p {
+		height: 2em;
+		line-height: 2em;
+		color: #6f6f6f;
+	}
+ </style>
+  <body>
+  	<div class="wrap">
+  		<fieldset>
+	  		<label> 手机号码验证<input type="text" id="tel"></label>
+	  		<a href="#" id="check1">验证</a>
+	  		<p id="tel_rs"></p>
+  		</fieldset>
+
+  		<fieldset>
+	  		<label>判断是否有相邻重复单词<input type="text" id="repword"></label>
+	  		<a href="#" id="check2">验证</a>
+	  		<p id="rep_rs"></p>
+  		</fieldset>
+  	</div>
+  	<script>
+  		window.onload = function(){
+  			var tel = document.getElementById('tel');
+  			var repword = document.getElementById('repword');
+  			var check1 = document.getElementById('check1');
+  			var check2 = document.getElementById('check2');
+  			var tel_rs = document.getElementById('tel_rs');
+  			var rep_rs = document.getElementById('rep_rs');
+
+  			var r1 = /^1[3|4|5|7|8|]\d{9}$/;
+  			var r2 = /\b(\w+)\b\s+\1\b/;
+
+  			check1.onclick = function(){
+  				if(tel.value){
+  					tel_rs.innerHTML = r1.test(tel.value);
+  				}else{
+  					tel_rs.innerHTML = '请输入一个手机号码';
+  				}
+  				return false;
+  			}
+  			check2.onclick = function(){
+  				if(repword.value){
+  					rep_rs.innerHTML = r2.test(repword.value);
+  				}else{
+  					rep_rs.innerHTML = '请输入一个字符串';
+  				}
+  			}
+
+  		}
+  	</script>
+  </body>
+</html>
