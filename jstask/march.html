@@ -74,11 +74,16 @@ function sortAqiData(data) {
 function render(data) {
    var resort = document.getElementById('resort');
    var Num = ['一','二','三','四','五','六','七','八','九'];
+   var liList = [];
+   var li = '';
    for(var i = 0; i<data.length; i++){
-      var li = document.createElement('li');
-      li.innerHTML = '第'+Num[i]+'名：' + data[i][0] + '空气质量：<b>' + data[i][1] + '</b>';
-      resort.appendChild(li);
+      //var li = document.createElement('li');
+      //li.innerHTML = '第'+Num[i]+'名：' + data[i][0] + '空气质量：<b>' + data[i][1] + '</b>';
+      //resort.appendChild(li);
+      li = '<li>第'+Num[i]+'名：' + data[i][0] + '空气质量：<b>' + data[i][1] + '</b></li>';
+      liList.push(li);
    }
+   resort.innerHTML = liList.join('');
 }
 
 function btnHandle() {
