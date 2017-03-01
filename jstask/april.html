@@ -37,6 +37,7 @@
 		}
 		#list li {
 			display: inline-block;
+			margin-right: 8px;
 			padding: 0 10px;
 			height: 60px;
 			line-height: 60px;
@@ -124,6 +125,9 @@
 							if(num) pushList(num,direction);
 						}
 						number.value = '';
+					}else if(target.tagName.toLowerCase() == 'li'){
+						list.removeChild(target);
+						console.log('Element removed!!');
 					}
 				})
 			}
