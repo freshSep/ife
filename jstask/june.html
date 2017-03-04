@@ -17,7 +17,14 @@
 			padding: 15px;
 			border: 1px solid #dedede;
 			border-radius: 5px;
-			text-align: right;
+			text-align: left;
+		}
+		p {
+			margin: 15px 0;
+		}
+		input {
+			display: inline-block;
+			padding: 5px;
 		}
 		textarea {
 			display: block;
@@ -37,12 +44,22 @@
 			background: #04aac1;
 			color: #fff;
 			border: 1px solid #eee;
+			outline: 0;
 		}
 		button:active {
 			background: #50c4ed;
 		}
 		button:hover, button:focus {
 			background: #307790;
+		}
+		#search {
+			background: #e91e1e;
+		}
+		#search:hover {
+			background: #f44336;
+		}
+		#search:active, #search:focus {
+			background: red;
 		}
 		#list {
 			list-style: none;
@@ -54,7 +71,11 @@
 			height: 60px;
 			line-height: 60px;
 			color: #fff;
-			background: red;
+			/*background: red;*/
+			background: #3ead8c;
+		}
+		li.hightlight {
+			background: #fd6262;
 		}
 
 	</style>
@@ -62,89 +83,159 @@
 <body>
 	<div class="wrap" id="wrap">
 		<fieldset>
-			<textarea id="number"></textarea>
+			<textarea id="number" placeholder="可一次输入多个内容，格式可以为数字、中文、英文等，可以通过用回车，逗号（全角半角均可），顿号，空格（全角半角、Tab等均可）等符号作为不同内容的间隔"></textarea>
+
 			<button id="btn1" class="left push">左侧入</button>
 			<button id="btn2" class="right push">右侧入</button>
-
 			<button id="btn3" class="left pop">左侧出</button>
-			<button id="btn4" class="right pop">左侧出</button>
+			<button id="btn4" class="right pop">右侧出</button>
+			
+			<input type="text" id="key" name="key">
+			<button id="search">搜索</button>
 		</fieldset>
 		<ul id="list">
 		</ul>
 	</div>
 	<script>
-		(function(){
-			var number = document.getElementById('number');
-			var list = document.getElementById('list');
-			//var btn1 = document.getElementById('btn1');
-			//var btn2 = document.getElementById('btn2');
-			//var btn3 = document.getElementById('btn3');
-			//var btn4 = document.getElementById('btn4');
-			
-			/*
-			     插入数字 
-			**/
-			function pushList(num,direction) {
-				var left = '';
-				var right = '';
-				var oldList = list.innerHTML;
-				if(direction == 'left'){
-					left = '<li>'+num+'</li>';
-				}else {
-					right = '<li>'+num+'</li>';
-				}
-				list.innerHTML = left + oldList + right;
-			}
-			/*
-			     弹出数字
-			**/
-			function popList(direction){
-				if(list.children.length) { //或使用标准的childNodes，通过nodeType来过滤文本节点
-					var removeLi = (direction=='left')?list.firstElementChild:list.lastElementChild;
-					list.removeChild(removeLi);
-					alert(removeLi.innerText);
+	(function(){
+
+		//获取所需的所有元素
+		var number = document.getElementById('number');
+		var list = document.getElementById('list');
+		var search = document.getElementById('search');
+		var key = document.getElementById('key');
+		var wrap = document.getElementById('wrap');
+		var items = []; //保存队列信息
+		/*
+		    工具函数
+		**/
+		function indexOf(ele,arr){
+			var index = -1;
+			for (var i = 0; i < arr.length; i++){
+				if(ele === arr[i]){
+					index = i;
 				}
 			}
-			/*
-			     初始化
-			**/
-			function init(){
-				var btnList = document.getElementsByTagName('button');
-				var wrap = document.getElementById('wrap');
+			return index;
+		}
+		/*
+		     插入数字 
+		**/
+		function pushList(direction,input) {
+			if( items.length == 60){ //限制最大队列数，并返回
+				alert('队列元素最多为60个!')
+				return false;
+			}
+			r = /[\s|,|，|、]+/g;
+			var rs = input.trim().split(r);
+			if(direction){
+				for(var i = rs.length; i > 0; i--) {
+					items.unshift(rs[i-1]);
+				}
+			}else{
+				for(var j = 0; j < rs.length; j++) {
+					items.push(rs[j]);
+				}
+			}
+			listRender(items);
+			return true;
+		}
+		/*
+		     弹出数字
+		**/
+		function popList(direction,idx) {
+			//待优化,根据参数类型做重载
+			if(items.length) {
+				var removedItem = '';
 
-				//为输入框绑定输入限制
-				/*number.addEventListener('keydown',function(event){
-					//阻止非数字输入
-					if(event.keyCode>57||event.keyCode<48){
-						if(event.keyCode!=8)event.preventDefault();
-						//return false;
-					}
-				})*/
+				if( idx!= undefined){
+					removedItem = items.splice(idx,1);
+				}else if(direction != undefined&& direction!== 0){
+					removedItem = direction? items.shift():items.pop();
+				}
 
-				//事件代理，根据button的class值来判断采用的方法
-				wrap.addEventListener('click',function(event){
-					var target = event.target;
-					if(target.tagName.toLowerCase() == 'button') {
-						var classList = target.className.split(' ');
-						//(target.classList || target.className.split(' '));
-						var direction = (classList.indexOf('left') == -1)?'right':'left';
+				listRender(items);
+				alert(removedItem);
+			}else {
+				alert('队列中已经没有元素了!');
+			}
+		}
+		/*
+		    渲染当前队列
+		**/
+		function listRender(arr) {
+			//console.log('render:'+arr);
+			var inner = '';
+			for(var i = 0; i < arr.length; i++) {
+				inner += '<li>'+arr[i]+'</li>';
+			}
+			list.innerHTML = inner;
+		}
+		/*
+		    获取匹配项
+		**/
+		function itemFilter(key, total){
+			var reg = new RegExp(key);
+			console.log(reg);
+			var indArr = [];
+			for(var i = 0; i < total.length; i++){
+				if(reg.test(total[i])){
+					indArr.push(i);
+				}
+			}
+			console.log(indArr);
+			return indArr;
+		}
+		/*
+		    高亮匹配项
+		**/
+		function hightlight(indexArr) {
+			//console.log(indexArr);
+			var lis = list.children;
+			for(var j = 0; j < lis.length; j++) {
+				if(indexArr.indexOf(j)==-1){
+					lis[j].style.background = '#3ead8c';
+				}else{
+					lis[j].style.background = '#fd6262';
+				}
+			}
+		}
+		/*
+		     初始化
+		**/
+		function init() {
+			//事件代理
+			wrap.addEventListener('click', function(event){
+				var target = event.target;
+
+				if(target.tagName.toLowerCase() == 'button') {
+					var classList = target.className.split(' '); 
+					var direction = (classList.indexOf('left') == -1)?false:true;
+					if(classList.indexOf('pop') != -1) { //弹出
+						popList(direction);
+					}else if(classList.indexOf('push') != -1) {//插入
 						var num = number.value;
-						if(classList.indexOf('push') == -1){
-							popList(direction);
-						}else {
-							//pushList(num,direction);
-							//num 为空则不插入
-							if(num) pushList(num,direction);
+						if(num){
+							var rs = pushList(direction, num);
+							if(rs) number.value = ''; 
 						}
-						number.value = '';
-					}else if(target.tagName.toLowerCase() == 'li'){
-						list.removeChild(target);
-						console.log('Element removed!!');
 					}
-				})
-			}
-			init();
-		})();
+				}else if(target.tagName.toLowerCase() == 'li') {
+					var idx = indexOf(target,list.children);
+					popList(0,idx); //点击队列元素
+				}
+			})
+			search.addEventListener('click', function(){
+				if(key.value) {
+					var filterd = itemFilter(key.value,items);
+					hightlight(filterd);
+					key.value = '';
+				}
+			})
+		}
+		init();
+	})();
+
 	</script>
 </body>
 </html>
