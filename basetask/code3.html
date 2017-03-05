@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三栏布局</title>
+	<style>
+		html,html *{
+			margin:0;
+			padding:0;
+			box-sizing:border-box;	
+			font-size:14px;
+		}
+		.border{
+			margin:15px;
+			padding:20px;
+			background:#eee;
+			border:1px solid #999;
+			/*clear:both;*/
+			overflow:auto;
+		}
+		.logo{
+			float:left;
+			margin-bottom:15px;
+			padding:20px 8px;
+			width:80px;
+			height:80px;
+			background:#eee;
+			border:1px solid #999;
+		}
+		.logo:last-of-type{
+			margin-bottom:0;
+		}
+		span{
+			margin-left:20px;
+		}
+		p{
+			text-align:center;
+			margin-bottom:15px;
+		}
+		.left{
+			float:left;
+			padding:20px;
+			width:200px;
+			background:#fff;
+		}
+		.right{
+			float:right;
+			padding:20px;
+			width:120px;
+			background:#fff;
+		}
+		.inner{
+			margin:0 130px 0 210px;
+			padding:20px;
+			background:#fff;
+		}
+		.inner p{
+			text-align: left;
+		}
+		ul{
+			list-style:none;
+		}
+	</style>
+</head>
+<body>
+	<div class="border">
+		<div class="left">
+			<div class="logo">
+				<p>团队logo<br>80x80</p>
+			</div>
+			<span>团队名称</span>
+		</div>
+		<div class="right">
+			<ul>
+				<li class="logo">
+					<p>个人logo<br>80x80</p>
+				</li>
+				<li class="logo">
+					<p>个人logo<br>80x80</p>
+				</li>
+				<li class="logo">
+					<p>个人logo<br>80x80</p>
+				</li>
+			</ul>
+		</div>
+		<div class="inner">
+			<p>关于你们团队的介绍</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis minima recusandae explicabo ex consequuntur numquam ipsum? Provident quae repellat officia dolore soluta expedita, at maiores laudantium excepturi magni beatae, ipsum!</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro, quisquam non amet? Velit recusandae sit, quidem nihil dolorum molestias, iste in harum. Voluptas distinctio, accusantium molestias possimus facilis quas, tempore!</p>
+			<p>概述</p>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel ea ratione nemo molestiae officia maiores maxime rerum fugiat error, dignissimos dolor pariatur, harum animi omnis culpa possimus amet rem eius.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque sit nesciunt numquam nam quisquam error, autem, velit, cum laudantium tempore nihil voluptates consequuntur, sint blanditiis magnam repellat delectus nulla sunt!</p>
+		</div>
+		
+	</div>
+</body>
+</html>
