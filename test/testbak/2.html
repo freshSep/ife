@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta name="Generator" content="ilingtian®">
+  <meta name="Author" content="凌天科技">
+  <meta charset="UTF-8">
+  <!-- 默认以ie最新版本显示-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <!-- 默认添加，如果不需要viewport优化 请修改相应代码-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>Document</title>
+  <style>
+	body {
+		padding-top: 700px;
+	}
+	#list li {
+		display: inline-block;
+		width: 10px;
+		background: red;
+	}
+	a {
+		display: none;
+	}
+  </style>
+ </head>
+ <body>
+  <a href="http://baike.baidu.com/link?url=xtovCRhKDMyspmqk_wiJCCTag83dppIvJNg2oe8t5TBVa8lmD27-IGGJLfd_G7R0sufu6uPbYVfvCxyPxOFk0JnfdsWv09Md85j_nRdpKLuEidp2EiHZuuahfyRw1hq-">冒泡排序算法</a>
+  <input type="text" id="number">
+  <button id="add">插入一个数字</button>
+  <button id="sortBtn">排序</button>
+  
+  <ul id="list">
+	
+  </ul>
+  <div id="showArr"></div>
+  <script>
+	//window.onload = function() {
+		var list = document.getElementById('list');
+		var sortBtn = document.getElementById('sortBtn')
+
+		add.onclick = function(){
+			var num = number.value;
+			if(num){
+				var li = document.createElement('li');
+				li.style.height = num + 'px';
+				li.data = num;
+				//尾追加
+				//list.appendChild(li);
+
+				//插入头部
+				list.insertBefore(li,list.children[0]);
+				number.value = '';
+			}
+		}
+
+		
+
+		function showSort() {
+			var items = list.children;
+			var nums = [];
+			for(var i = 0; i < items.length; i++){
+				nums.push(parseInt(items[i].data));
+			}
+			//console.log(nums);
+
+			var a = bubbleSort(nums);
+			console.log(a);
+		}
+		/*function bubbleSort(arr) {
+			var i = arr.length, j;
+			var tempExchangVal;
+			while (i > 0) {
+				for (j = 0; j < i - 1; j++) {
+					if (arr[j] > arr[j + 1]) {
+						tempExchangVal = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = tempExchangVal;
+					}
+				}
+				i--;
+			}
+			return arr;
+		}*/
+		function bubbleSort(arr) {
+			var i = arr.length, j;
+			var tempExchangVal;
+			var timer = '';
+			var flag = false;
+			timer = setInterval(function(){
+				flag = false;
+				for (j = 0; j < i - 1; j++) {
+					if (arr[j] > arr[j + 1]) {
+						tempExchangVal = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = tempExchangVal;
+						flag = true;
+					}
+				}
+				if(i==0||flag == false){
+					clearInterval(timer);
+					reWrite(arr);
+					return false;
+				}
+				i--;
+				reWrite(arr);
+			},500);
+		}
+		function selectSort(arr) {
+			var timer = '';
+			timer = setInterval(function(){
+				for (j = i; j < arr.length ; j++) {
+					if (arr[i] > arr[j]) {
+						tempExchangVal = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = tempExchangVal;
+					}
+				}
+				if(i==arr.length){
+					clearInterval(timer);
+					reWrite(arr);
+					return false;
+				}
+				i++;
+				reWrite(arr);
+			},500);
+		}
+
+		function reWrite(items) {
+			list.innerHTML = '';
+			for(var i = 0; i < items.length; i++){
+				var li = document.createElement('li');
+				li.style.height = items[i] + 'px';
+				li.data = items[i];
+				list.appendChild(li);
+			}
+		}
+
+		sortBtn.onclick = function(){
+			showSort()
+		}
+
+		/*
+		 do some test for bubbleSort function
+		**/
+		var test = [];
+		for(var i = 0; i<10; i++){
+			var a = parseInt(Math.random()*100);
+			test.push(a);
+		}
+		//bubbleSort(test);
+	//}
+
+  </script>
+ </body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.wrap {
+			margin: 15px auto;
+			max-width: 600px;
+		}
+		fieldset {
+			margin-bottom: 15px;
+			padding: 15px;
+			border: 1px solid #dedede;
+			border-radius: 5px;
+			text-align: center;
+		}
+		button {
+			display: inline-block;
+			margin-left: 8px;
+			padding: 5px 12px;
+			background: #04aac1;
+			color: #fff;
+			border: 1px solid #eee;
+		}
+		button:active {
+			background: #50c4ed;
+		}
+		button:hover, button:focus {
+			background: #307790;
+			outline: 0;
+		}
+		#sort {
+			float: right;
+		}
+		#list {
+			padding-top: 15px;
+			list-style: none;
+			clear: both;
+			overflow: hidden;
+		}
+		#list li {
+			display: inline-block;
+			margin-right: 8px;
+			padding: 0 8px;
+			/*height: 60px;*/
+			/*line-height: 60px;*/
+			/*color: #fff;*/
+			background: red;
+			vertical-align: bottom;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		<fieldset id="numfield">
+			<input type="text" id="number">
+			
+			<button id="btn1" class="left push">左侧入</button>
+			<button id="btn2" class="right push">右侧入</button>
+			<button id="btn3" class="left pop">左侧出</button>
+			<button id="btn4" class="right pop">右侧出</button>
+		</fieldset>
+		<select name="type" id="sortType">
+			<option value="bubble">bubble</option>
+			<option value="select">select</option>
+			<option value="insert">insert</option>
+			<option value="swap">swap</option>
+		</select>
+		<button id="sort" class="sort">排序</button>
+
+		<ul id="list">
+		</ul>
+		
+		<div id="show"></div>
+	</div>
+	<script src="main.js"></script>
+	<!-- <script>
+		(function(){
+			var number = document.getElementById('number');
+			var list = document.getElementById('list');
+			var sort = document.getElementById('sort');
+			var show = document.getElementById('show');
+			/*
+			     插入数字 
+			**/
+			function pushList(num,direction) {
+				if( list.children.length == 60){ //限制最大队列数，并返回
+					alert('队列元素最多为60个!')
+					return false;
+				}
+				var left = '';
+				var right = '';
+				var oldList = list.innerHTML;
+				if(direction == 'left'){
+					left = '<li style="height:'+(num*5)+'px;">'+num+'</li>';
+				}else {
+					right = '<li style="height:'+(num*5)+'px;">'+num+'</li>';
+				}
+				//list.innerHTML = left + oldList + right;
+			}
+			/*
+			     弹出数字
+			**/
+			function popList(direction){
+				if(list.children.length) { //或使用标准的childNodes，通过nodeType来过滤文本节点
+					var removeLi = (direction=='left')?list.firstElementChild:list.lastElementChild;
+					list.removeChild(removeLi);
+					alert(removeLi.innerText);
+				}
+			}
+			/*
+			    可视化排序
+			    当前采用的是 选择排序法
+			**/
+			function showSort(){
+				var items = list.children;
+				var nums = [];
+				show.innerHTML = '';
+				//get the number of items 
+				for( var i = 0; i < items.length; i++){
+					nums.push(items[i].innerText);
+				}
+				var x = 0;
+				var timer = '';
+				timer = setInterval(function(){
+					if(x == nums.length){
+						clearInterval(timer);
+						return false;
+					}
+					for(var y = 0; y < nums.length; y++){
+						if(nums[x] < nums[y]){
+							var temp = nums[x];
+							nums[x] = nums[y];
+							items[x].innerText = nums[y];
+							items[x].style.height = (nums[y]*5)+'px';
+							nums[y] = temp;
+							items[y].innerText = temp;
+							items[y].style.height = (temp*5)+'px';
+						}
+					}
+					var ele = document.createElement('p');
+					ele.innerText = nums.join(',');
+					show.appendChild(ele);
+					x++;
+				},1000);
+			}
+			/*
+			     初始化
+			**/
+			function init(){
+				var btnList = document.getElementsByTagName('button');
+				var wrap = document.getElementById('wrap');
+	
+				//为输入框绑定输入限制
+				number.addEventListener('keydown',function(event){
+					//阻止非数字输入
+					if(event.keyCode>57||event.keyCode<48){
+						if(event.keyCode!=8)event.preventDefault();
+						//return false; 
+					}
+				})
+	
+				//事件代理，根据button的class值来判断采用的方法
+				wrap.addEventListener('click',function(event){
+					var target = event.target;
+					if(target.tagName.toLowerCase() == 'button') {
+						var classList = target.className.split(' ');
+						//(target.classList || target.className.split(' '));
+						var direction = (classList.indexOf('left') == -1)?'right':'left';
+						var num = number.value;
+						if(classList.indexOf('pop') != -1){
+							popList(direction);
+						}else if(classList.indexOf('push') != -1) {
+							//pushList(num,direction);
+							//num 为空则不插入
+							if(num>=10 && num<=100){
+								pushList(num,direction);
+							}else {
+								alert('请输入一个大于10且小于100的数字!')
+							}
+						}
+						number.value = '';
+					}else if(target.tagName.toLowerCase() == 'li'){
+						list.removeChild(target);
+						console.log('Element removed!!');
+					}
+				})
+	
+				sort.addEventListener('click',function(){
+					showSort();
+				})
+			}
+			init();
+		})();
+	</script> -->
+</body>
+</html>

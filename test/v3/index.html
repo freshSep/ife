@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.wrap {
+			margin: 15px auto;
+			max-width: 600px;
+		}
+		fieldset {
+			margin-bottom: 15px;
+			padding: 15px;
+			border: 1px solid #dedede;
+			border-radius: 5px;
+			text-align: center;
+		}
+		button {
+			display: inline-block;
+			margin-left: 8px;
+			padding: 5px 12px;
+			background: #04aac1;
+			color: #fff;
+			border: 1px solid #eee;
+		}
+		button:active {
+			background: #50c4ed;
+		}
+		button:hover, button:focus {
+			background: #307790;
+			outline: 0;
+		}
+		#sort {
+			float: right;
+		}
+		input,select{
+			padding: 5px;
+		}
+		#list {
+			padding-top: 15px;
+			list-style: none;
+			clear: both;
+			overflow: hidden;
+		}
+		#list li {
+			display: inline-block;
+			margin-right: 8px;
+			padding: 0 8px;
+			background: red;
+			vertical-align: bottom;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrap" id="wrap">
+		<fieldset id="numfield">
+			<input type="text" id="number">
+			
+			<button id="btn1" class="left push">左侧入</button>
+			<button id="btn2" class="right push">右侧入</button>
+			<button id="btn3" class="left pop">左侧出</button>
+			<button id="btn4" class="right pop">右侧出</button>
+		</fieldset>
+		<select name="type" id="sortType">
+			<option value="bubble">bubble</option>
+			<option value="select">select</option>
+			<option value="insert">insert</option>
+			<option value="swap">swap</option>
+		</select>
+		<button id="sort" class="sort">排序</button>
+
+		<ul id="list">
+		</ul>
+		
+		<!-- <div id="show"></div> -->
+	</div>
+	<script src="main.js"></script>
+</body>
+</html>
