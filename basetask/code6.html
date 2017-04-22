@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <!-- 启用360浏览器的极速模式(webkit) -->
+  <meta name="renderer" content="webkit">
+  <!-- 默认以ie最新版本显示-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="Generator" content="shadow">
+  <meta name="Author" content="Sep">
+  <title>HTML&CSS基础 task 06</title>
+  <style>
+      body {
+        background: #787878;
+        font: normal 12px/1.3em Microsoft Yahei;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        margin: 10px auto;
+        padding: 0 44px;
+        width: 980px;
+        height: 1386px;
+        background: #fff;
+      }
+      header {
+        width: 892px;
+        height: 63px;
+        border-bottom: 2px solid #948e8e;
+      }
+      header a {
+        display: block;
+        width: 110px;
+        height: 100%;
+        line-height: 98px;
+        color: #fff;
+        background: #d55d5c;
+        text-align: center;
+        text-decoration: none;
+      }
+      section {
+        padding: 30px 0;
+        clear: both;
+        overflow: hidden;
+      }
+      ul {
+        list-style: none;
+      }
+      .left {
+        float: left;
+        width: 641px;
+      }
+      .right {
+        float: right;
+        width: 203px;
+      }
+      .alignright {
+        float: right;
+        margin: 20px;
+      }
+      .s2 .left {
+        width: 415px;
+      }
+      .s2 .right {
+        width: 459px;
+      }
+      .banner-wrap {
+        width: 100%;
+        height: 301px;
+      }
+      .s1 .left {
+        font: 500 12px/16px 宋体;
+        color: #767777;
+      }
+      .s1 .left ul {
+        width: 100%;
+      }
+      .s1 .left ul li {
+        float: left;
+        margin-left: 20px;
+        width: 200px;
+      }
+      .s1 .left ul li:first-of-type {
+        margin-left: 0;
+      }
+      .s1 .left h4 {
+        margin: 10px 0;
+        font-size: 16px;
+        font-family: Microsoft Yahei;
+        color: #418c59;
+        text-decoration: underline;
+      }
+      .s1 .left li:nth-of-type(2) h4{
+        color: #d2994f;
+      }
+      .s1 .left li:nth-of-type(2) p{
+        font-family: Microsoft Yahei;
+        color: #231815;
+        opacity: 70%;
+      }
+      .s1 .left li:nth-of-type(3) h4{
+        color: #cc7680;
+      }
+      .s1 .left li:nth-of-type(3) h4+p {
+        padding-bottom: 30px;
+      }
+      .s1 .left li:nth-of-type(3) p{
+        font-family: Microsoft Yahei;
+      }
+      .s1 .left i {
+        color: #cd4a48;
+        opacity: 70%;
+      }
+      .s1 hr {
+        width: 203px;
+        height: 2px;
+        border: 0;
+        background: #cc8091;
+      }
+      .s1 .right h3 {
+        float: left;
+        padding-top: 10px;
+        border-bottom: 1px solid #000000;
+        font-size: 24px;
+        line-height: 30px;
+        font-weight: 500;
+        font-family: Microsoft Yahei;
+        color: #000000;
+      }
+      .s1 .right h3:first-letter {
+        font-size: 1.5em;
+      }
+      .s1 .right h3+p {
+        padding-top: 5px;
+        clear: both;
+        font-style: italic;
+        color: #676767;
+        font-family: '楷体';
+        line-height: 10px;
+      }
+      .s1 .right h1 {
+        font-size: 116px;
+        line-height: 150px;
+        text-indent: -30px;
+        color: #75b86b;
+        font-family: Microsoft Yahei;
+        font-style: italic;
+      }
+      .s1 .right h2 {
+        float: left;
+        margin-right: 5px;
+        font-size: 55px;
+        font-weight: 500;
+        line-height: 60px;
+        color: #cc8091;
+        font-family: Microsoft Yahei;
+      }
+      .s1 .right h5 {
+        padding-top: 25px;
+        color: #cc8091;
+      }
+
+      .section-title {
+        font-family: 黑体;
+        font-size: 42px;
+        font-weight: 700;
+        line-height: 58px;
+        color: #11456b;
+        text-transform: uppercase;
+      }
+      .section-title span {
+        font-size: 72px;
+        color: #f5e327;
+        font-style: italic;
+      }
+      .s2 .left h3 {
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        font-size: 33px;
+        font-weight: 700;
+        line-height: 49px;
+        color: #11456b;
+        border-bottom: 2px solid #11456b;
+      } 
+      .s2 .left p:first-of-type:first-letter {
+          float: left;
+          font-size: 70px;
+          line-height: 70px;
+          color: #f5e327;
+      }
+      .s2 .card {
+        margin-top: 20px;
+        width: 459px;
+        height: 318px;
+        background: #eeeed6;
+      }
+      .card ul {
+            padding: 15px;
+            font-size: 16px;
+            color: #5a5b5b;
+            font-family: '宋体';
+            line-height: 36px;
+      }
+      .card ul i {
+        font-size: 12px;
+      }
+      .red {
+        float: left;
+        padding: 42px 10px;
+        width: 260px;
+        background: #d55d5c;
+        color: #fff;
+      }
+      .red h2 {
+        float: left;
+        margin-right: 10px;
+        font-size: 110px;
+        height: 86px;
+        line-height: 86px;
+        font-family: Microsoft Yahei;
+        border-right: 2px solid #fff;
+      }
+      .red h3 {
+        font-size: 21px;
+        line-height: 1.3em;
+        font-style: italic;
+        font-weight: 500;
+        font-family: 黑体;
+      }
+      .red h4 {
+        font-size: 12px;
+        font-family: 黑体;
+        line-height: 18px;
+      }
+      .s2 blockquote {
+        float: right;
+        padding: 30px;
+        height: 160px;
+      }
+      footer {
+        clear: both;
+        overflow: hidden;
+        border-top: 1px solid #938e8c;
+      }
+      footer p {
+        float: right;
+        color: #d45d5c;
+        font-size: 12px;
+      }
+  </style>
+  <body>
+    <div class="container">
+        <header>
+          <a href="ife.baidu.com">ife.baidu.com</a>
+        </header>
+        <section class="s1">
+            <div class="left">
+              <div class="banner-wrap">
+                <img src="banner.jpg" alt="">
+                <div class="green-cover"></div>
+                <div class="red-cover"></div>
+              </div>
+              <ul>
+                <li>
+                  <h4>What</h4>
+                  <p>端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端</p>
+                </li>
+                <li>
+                  <h4>When</h4>
+                  <p>端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端</p>
+                </li>
+                <li>
+                  <h4>How</h4>
+                  <p>端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端前端前端前端端前端前端前端前端前端前端</p>
+                  <p>What----------- <i>40%</i></p>
+                  <p>What----------- <i>30%</i></p>
+                  <p>What----------- <i>30%</i></p>
+                </li>
+              </ul>
+            </div>
+            <div class="right">
+              <hr>
+              <h3>ABOUT </h3>
+              <h3>TECHNOLOGE</h3>
+              <p>About technologe about technologe about technologe</p>
+              <h1>700</h1>
+              <h2>3.2</h2>
+              <h5>CSS</h5>
+              <span>CSSSSSS</span>
+            </div>
+        </section>
+        <section class="s2">
+            <div class="left">
+              <h2 class="section-title"><span>the</span> technologe of front </h2>
+              <h3>前端技术领域</h3>
+              <p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前<img src="laptop.jpg" alt="" class="alignright">端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+              <p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+            </div>
+            <div class="right">
+              <img src="tap.jpg" alt="">
+              <div class="card">
+                <ul>
+                  <li>前端前端前端前端前端............................ <i>前端</i></li>
+                  <li>前端前端前端前端前端............................ <i>前端</i></li>
+                  <li>前端前端前端前端前端............................ <i>前端</i></li>
+                </ul>
+                <div class="red">
+                  <h2>0</h2>
+                  <h3>ONE TWO <br> THREE FORE FIVE</h3>
+                  <h4>hello world hello world hello world</h4>
+                </div>
+                <blockquote>
+                  world hello world <br>
+                  hello world hello world <br>
+                  hello world hello world <br>
+                  hello world hello world <br>
+                 hello world
+                </blockquote>
+              </div>
+            </div>
+        </section>
+        <footer>
+          <p>ife.baidu.com</p>
+        </footer>
+    </div>
+  </body>
+</html>
